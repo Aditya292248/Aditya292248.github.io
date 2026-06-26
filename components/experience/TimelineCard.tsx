@@ -4,12 +4,21 @@ import { motion } from 'framer-motion';
 import { slideInRight, stagger, fadeUp } from '@/lib/variants';
 import type { Experience } from '@/types';
 
+const LOGO_MAP: Record<string, string> = {
+  allowance: '/images/allowance.png',
+  gatepoint: '/images/gatepoint.png',
+  rezolve: '/images/rezolve.png',
+  zolve: '/images/zolve.png',
+};
+
 interface TimelineCardProps {
   experience: Experience;
   index: number;
 }
 
 export default function TimelineCard({ experience, index }: TimelineCardProps) {
+  const logo = LOGO_MAP[experience.id];
+
   return (
     <motion.div
       variants={slideInRight}
@@ -25,21 +34,30 @@ export default function TimelineCard({ experience, index }: TimelineCardProps) {
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
-          <div>
-            <h3 className="text-xl md:text-2xl font-bold text-text-primary">
-              {experience.company}
-              {experience.upcoming && (
-                <span className="ml-3 text-xs font-mono px-2 py-0.5 bg-accent/10 border border-accent/30 text-accent rounded-sm align-middle">
-                  UPCOMING
-                </span>
-              )}
-            </h3>
-            <p className="text-sm font-medium text-accent mt-0.5">
-              {experience.role}
-            </p>
-            {experience.type && (
-              <p className="text-xs text-text-secondary mt-0.5">{experience.type}</p>
+          <div className="flex items-start gap-4">
+            {logo && (
+              <img
+                src={logo}
+                alt={`${experience.company} logo`}
+                className="w-10 h-10 md:w-12 md:h-12 rounded-sm object-contain flex-shrink-0 bg-surface-3 p-1.5 border border-border/50"
+              />
             )}
+            <div>
+              <h3 className="text-xl md:text-2xl font-bold text-text-primary">
+                {experience.company}
+                {experience.upcoming && (
+                  <span className="ml-3 text-xs font-mono px-2 py-0.5 bg-accent/10 border border-accent/30 text-accent rounded-sm align-middle">
+                    UPCOMING
+                  </span>
+                )}
+              </h3>
+              <p className="text-sm font-medium text-accent mt-0.5">
+                {experience.role}
+              </p>
+              {experience.type && (
+                <p className="text-xs text-text-secondary mt-0.5">{experience.type}</p>
+              )}
+            </div>
           </div>
           <div className="text-right flex-shrink-0">
             <p className="text-xs font-mono text-text-secondary">{experience.period}</p>
