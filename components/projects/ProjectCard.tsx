@@ -53,13 +53,11 @@ export default function ProjectCard({ project, featured }: ProjectCardProps) {
         {/* Title row with logo */}
         <div className="flex items-center gap-3 mb-1.5">
           {logo && (
-            <div className="w-8 h-8 rounded-sm bg-surface-3 border border-border/50 flex items-center justify-center flex-shrink-0 overflow-hidden">
-              <img
-                src={logo}
-                alt=""
-                className="w-5 h-5 object-contain"
-              />
-            </div>
+            <img
+              src={logo}
+              alt=""
+              className="w-7 h-7 rounded-[4px] object-cover flex-shrink-0"
+            />
           )}
           <h3 className={`font-bold text-text-primary group-hover:text-accent transition-colors duration-200 ${
             featured ? 'text-xl md:text-2xl' : 'text-lg'

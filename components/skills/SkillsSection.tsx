@@ -14,17 +14,6 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Database,
 };
 
-const SKILL_ICON_MAP: Record<string, string> = {
-  'Python': '/images/python.png',
-  'TypeScript': '/images/typescript.png',
-  'JavaScript': '/images/js.png',
-  'SQL': '/images/sql.png',
-  'PyTorch': '/images/pytorch.png',
-  'Hugging Face': '/images/huggingface.png',
-  'LangChain': '/images/langchain.png',
-  'scikit-learn': '/images/skleanr.png',
-};
-
 const pillVariant = {
   hidden: { opacity: 0, scale: 0.85 },
   visible: {
@@ -73,7 +62,7 @@ function SkillCard({ category }: { category: SkillCategory }) {
         </h3>
       </div>
 
-      {/* Pills */}
+      {/* Pills — text only, no icons */}
       <motion.div
         variants={pillStagger}
         initial="hidden"
@@ -81,32 +70,20 @@ function SkillCard({ category }: { category: SkillCategory }) {
         viewport={{ once: true, amount: 0.3 }}
         className="flex flex-wrap gap-2"
       >
-        {category.skills.map((skill) => {
-          const icon = SKILL_ICON_MAP[skill];
-          return (
-            <motion.span
-              key={skill}
-              variants={pillVariant}
-              className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-sm border transition-all duration-200"
-              style={{
-                backgroundColor: 'var(--surface-3)',
-                borderColor: `${accentHex}20`,
-                color: accentHex,
-              }}
-            >
-              {icon && (
-                <span className="w-4 h-4 rounded-[3px] bg-white/10 flex items-center justify-center flex-shrink-0 overflow-hidden">
-                  <img
-                    src={icon}
-                    alt=""
-                    className="w-3 h-3 object-contain"
-                  />
-                </span>
-              )}
-              {skill}
-            </motion.span>
-          );
-        })}
+        {category.skills.map((skill) => (
+          <motion.span
+            key={skill}
+            variants={pillVariant}
+            className="text-xs font-mono px-2.5 py-1 rounded-sm border transition-all duration-200"
+            style={{
+              backgroundColor: 'var(--surface-3)',
+              borderColor: `${accentHex}20`,
+              color: accentHex,
+            }}
+          >
+            {skill}
+          </motion.span>
+        ))}
       </motion.div>
     </motion.div>
   );
