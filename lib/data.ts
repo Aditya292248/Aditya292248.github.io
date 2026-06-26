@@ -2,6 +2,20 @@ import type { Project, Experience, Stat, SkillCategory } from '@/types';
 
 export const experiences: Experience[] = [
   {
+    id: 'allowance',
+    company: 'Allowance (Y Combinator)',
+    role: 'AI Product Engineering Co-op',
+    period: 'July 2026 – Dec 2026',
+    location: '',
+    type: '',
+    upcoming: true,
+    bullets: [
+      'Developing payment infrastructure that programmatically issues one-time virtual cards with approval controls, spending limits, and merchant restrictions to authorize purchases on behalf of users.',
+      'Designing and shipping features and internal tooling across frontend and backend to power autonomous purchasing workflows (travel booking, restock tracking, price-drop execution).',
+      'Building evaluation systems for transaction reliability and checkout success rates; testing payment flows to surface and resolve edge cases before production deployment.',
+    ],
+  },
+  {
     id: 'gatepoint',
     company: 'GatePoint',
     role: 'Founder & Lead Engineer',
@@ -112,7 +126,7 @@ export const projects: Project[] = [
 
 export const stats: Stat[] = [
   { value: 3.52, suffix: '', label: 'GPA', decimals: 2 },
-  { value: 2, suffix: '', label: 'Co-ops Completed', decimals: 0 },
+  { value: 3, suffix: '', label: 'Co-ops', decimals: 0 },
   { value: 5, suffix: '+', label: 'Projects Shipped', decimals: 0 },
   { value: 2, suffix: '', label: 'Hackathon Placements', decimals: 0 },
 ];
