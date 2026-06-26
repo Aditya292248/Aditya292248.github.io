@@ -7,10 +7,9 @@ import type { Project } from '@/types';
 
 interface ProjectCardProps {
   project: Project;
-  featured?: boolean;
 }
 
-const LOGO_MAP: Record<string, string> = {
+const IMAGE_MAP: Record<string, string> = {
   gatepoint: '/images/gatepoint.png',
   neocortex: '/images/neocortex.png',
   memora: '/images/memora.png',
@@ -18,61 +17,62 @@ const LOGO_MAP: Record<string, string> = {
   pipefantasy: '/images/pipefantasy.png',
 };
 
-export default function ProjectCard({ project, featured }: ProjectCardProps) {
-  const logo = LOGO_MAP[project.id];
+export default function ProjectCard({ project }: ProjectCardProps) {
+  const image = IMAGE_MAP[project.id];
 
   return (
     <motion.div
       variants={fadeUp}
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className={`rounded-sm overflow-hidden group relative glow-accent-hover flex flex-col ${
-        featured ? 'md:col-span-2 card-elevated' : 'card-surface'
-      }`}
+      className="card-surface rounded-sm overflow-hidden group relative glow-accent-hover flex flex-col"
     >
       {/* Top-edge accent gradient on hover */}
       <div
         className="absolute inset-x-0 top-0 h-px z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
-          background: featured
-            ? 'linear-gradient(to right, transparent, #F59E0B80, #10B98180, transparent)'
-            : 'linear-gradient(to right, transparent, #10B98160, transparent)',
+          background: 'linear-gradient(to right, transparent, #10B98160, transparent)',
         }}
       />
 
+      {/* Image area */}
+      <div className="relative w-full h-44 bg-surface-2 overflow-hidden flex items-center justify-center">
+        {image ? (
+          <>
+            <img
+              src={image}
+              alt={`${project.name}`}
+              className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-surface-2/80 via-transparent to-transparent" />
+          </>
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-accent/5 to-accent-warm/5 flex items-center justify-center">
+            <span className="text-2xl font-bold text-accent/20 font-mono">
+              {project.name.charAt(0)}
+            </span>
+          </div>
+        )}
+      </div>
+
       {/* Content */}
-      <div className={`flex flex-col flex-1 ${featured ? 'p-6 md:p-8' : 'p-5 md:p-6'}`}>
+      <div className="flex flex-col flex-1 p-5 md:p-6">
         {/* Award badge */}
         {project.award && (
-          <div className="flex items-center gap-1.5 text-xs font-mono text-accent-warm mb-3">
+          <div className="flex items-center gap-1.5 text-xs font-mono text-accent-warm mb-2">
             <Trophy size={12} />
             <span>{project.award}</span>
           </div>
         )}
 
-        {/* Title row with logo */}
-        <div className="flex items-center gap-4 mb-2">
-          {logo && (
-            <div className="w-11 h-11 rounded-md bg-surface-3 border border-border/50 flex items-center justify-center flex-shrink-0 overflow-hidden p-1.5">
-              <img
-                src={logo}
-                alt=""
-                className="w-full h-full object-contain"
-              />
-            </div>
-          )}
-          <h3 className={`font-bold text-text-primary group-hover:text-accent transition-colors duration-200 ${
-            featured ? 'text-xl md:text-2xl' : 'text-lg'
-          }`}>
-            {project.name}
-          </h3>
-        </div>
-
-        <p className="text-xs font-mono text-accent mb-3">{project.shortDescription}</p>
-        <p className="text-base text-text-secondary leading-relaxed flex-1">{project.longDescription}</p>
+        <h3 className="text-lg font-bold text-text-primary mb-1 group-hover:text-accent transition-colors duration-200">
+          {project.name}
+        </h3>
+        <p className="text-xs font-mono text-accent mb-2">{project.shortDescription}</p>
+        <p className="text-sm text-text-secondary leading-relaxed flex-1">{project.longDescription}</p>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-1.5 mt-5">
+        <div className="flex flex-wrap gap-1.5 mt-4">
           {project.tags.map((tag) => (
             <span
               key={tag}

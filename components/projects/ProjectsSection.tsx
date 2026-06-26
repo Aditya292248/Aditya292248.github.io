@@ -7,9 +7,6 @@ import ProjectCard from './ProjectCard';
 import { projects } from '@/lib/data';
 
 export default function ProjectsSection() {
-  const featured = projects.filter((p) => p.featured);
-  const rest = projects.filter((p) => !p.featured);
-
   return (
     <section id="projects" className="relative py-32 md:py-40 px-6">
       {/* Right glow */}
@@ -31,18 +28,14 @@ export default function ProjectsSection() {
           <SectionHeading eyebrow="04 — Projects" title="What I've built." />
         </motion.div>
 
-        {/* Bento grid */}
         <motion.div
           variants={stagger}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
         >
-          {featured.map((project) => (
-            <ProjectCard key={project.id} project={project} featured />
-          ))}
-          {rest.map((project) => (
+          {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </motion.div>
