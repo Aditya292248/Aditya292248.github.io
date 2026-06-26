@@ -49,13 +49,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-surface-2/80 via-transparent to-transparent" />
             </>
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-accent/5 to-accent-warm/5 flex items-center justify-center p-10">
+            <>
               <img
                 src={imageData.src}
                 alt={project.name}
-                className="max-w-[80px] max-h-[80px] object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                className="w-full h-full object-contain bg-surface-2 p-6 opacity-90 group-hover:opacity-100 transition-opacity duration-300"
               />
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-surface-2/60 via-transparent to-transparent" />
+            </>
           )
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-accent/5 to-accent-warm/5 flex items-center justify-center">
