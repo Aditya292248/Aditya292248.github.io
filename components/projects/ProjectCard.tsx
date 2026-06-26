@@ -10,15 +10,16 @@ interface ProjectCardProps {
   featured?: boolean;
 }
 
-const IMAGE_MAP: Record<string, string> = {
+const LOGO_MAP: Record<string, string> = {
   gatepoint: '/images/gatepoint.png',
   neocortex: '/images/neocortex.png',
-  imagedoctor: '/images/imageDoctor.png',
   memora: '/images/memora.png',
+  imagedoctor: '/images/imageDoctor.png',
+  pipefantasy: '/images/pipefantasy.png',
 };
 
 export default function ProjectCard({ project, featured }: ProjectCardProps) {
-  const image = IMAGE_MAP[project.id];
+  const logo = LOGO_MAP[project.id];
 
   return (
     <motion.div
@@ -39,20 +40,6 @@ export default function ProjectCard({ project, featured }: ProjectCardProps) {
         }}
       />
 
-      {/* Project image */}
-      {image && (
-        <div className={`relative w-full overflow-hidden bg-surface-2 ${
-          featured ? 'h-44 md:h-56' : 'h-36'
-        }`}>
-          <img
-            src={image}
-            alt={`${project.name} screenshot`}
-            className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-surface-2 via-transparent to-transparent opacity-60" />
-        </div>
-      )}
-
       {/* Content */}
       <div className={`flex flex-col flex-1 ${featured ? 'p-6 md:p-8' : 'p-5 md:p-6'}`}>
         {/* Award badge */}
@@ -63,11 +50,24 @@ export default function ProjectCard({ project, featured }: ProjectCardProps) {
           </div>
         )}
 
-        <h3 className={`font-bold text-text-primary mb-1.5 group-hover:text-accent transition-colors duration-200 ${
-          featured ? 'text-xl md:text-2xl' : 'text-lg'
-        }`}>
-          {project.name}
-        </h3>
+        {/* Title row with logo */}
+        <div className="flex items-center gap-3 mb-1.5">
+          {logo && (
+            <div className="w-8 h-8 rounded-sm bg-surface-3 border border-border/50 flex items-center justify-center flex-shrink-0 overflow-hidden">
+              <img
+                src={logo}
+                alt=""
+                className="w-5 h-5 object-contain"
+              />
+            </div>
+          )}
+          <h3 className={`font-bold text-text-primary group-hover:text-accent transition-colors duration-200 ${
+            featured ? 'text-xl md:text-2xl' : 'text-lg'
+          }`}>
+            {project.name}
+          </h3>
+        </div>
+
         <p className="text-xs font-mono text-accent mb-3">{project.shortDescription}</p>
         <p className="text-base text-text-secondary leading-relaxed flex-1">{project.longDescription}</p>
 

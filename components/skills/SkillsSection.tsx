@@ -15,10 +15,14 @@ const ICON_MAP: Record<string, LucideIcon> = {
 };
 
 const SKILL_ICON_MAP: Record<string, string> = {
-  Python: '/images/python.png',
-  TypeScript: '/images/typescript.png',
-  JavaScript: '/images/js.png',
-  SQL: '/images/sql.png',
+  'Python': '/images/python.png',
+  'TypeScript': '/images/typescript.png',
+  'JavaScript': '/images/js.png',
+  'SQL': '/images/sql.png',
+  'PyTorch': '/images/pytorch.png',
+  'Hugging Face': '/images/huggingface.png',
+  'LangChain': '/images/langchain.png',
+  'scikit-learn': '/images/skleanr.png',
 };
 
 const pillVariant = {
@@ -91,11 +95,13 @@ function SkillCard({ category }: { category: SkillCategory }) {
               }}
             >
               {icon && (
-                <img
-                  src={icon}
-                  alt={skill}
-                  className="w-3.5 h-3.5 object-contain"
-                />
+                <span className="w-4 h-4 rounded-[3px] bg-white/10 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  <img
+                    src={icon}
+                    alt=""
+                    className="w-3 h-3 object-contain"
+                  />
+                </span>
               )}
               {skill}
             </motion.span>
