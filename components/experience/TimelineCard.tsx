@@ -36,11 +36,13 @@ export default function TimelineCard({ experience, index }: TimelineCardProps) {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
           <div className="flex items-start gap-4">
             {logo && (
-              <img
-                src={logo}
-                alt={`${experience.company} logo`}
-                className="w-10 h-10 md:w-12 md:h-12 rounded-sm object-contain flex-shrink-0 bg-surface-3 p-1.5 border border-border/50"
-              />
+              <div className="w-11 h-11 md:w-12 md:h-12 rounded-md bg-surface-3 border border-border/50 flex items-center justify-center flex-shrink-0 overflow-hidden p-1.5">
+                <img
+                  src={logo}
+                  alt={`${experience.company} logo`}
+                  className="w-full h-full object-contain"
+                />
+              </div>
             )}
             <div>
               <h3 className="text-xl md:text-2xl font-bold text-text-primary">
