@@ -9,16 +9,17 @@ interface ProjectCardProps {
   project: Project;
 }
 
-const IMAGE_MAP: Record<string, string> = {
-  gatepoint: '/images/gatepoint.png',
-  neocortex: '/images/neocortex.png',
-  memora: '/images/memora.png',
-  imagedoctor: '/images/imageDoctor.png',
-  pipefantasy: '/images/pipefantasy.png',
+// Screenshots get object-cover, logos get object-contain with padding
+const IMAGE_MAP: Record<string, { src: string; type: 'screenshot' | 'logo' }> = {
+  gatepoint: { src: '/images/gatepoint.png', type: 'logo' },
+  neocortex: { src: '/images/neocortex.png', type: 'screenshot' },
+  memora: { src: '/images/memora.png', type: 'screenshot' },
+  imagedoctor: { src: '/images/imageDoctor.png', type: 'screenshot' },
+  pipefantasy: { src: '/images/pipefantasy.png', type: 'screenshot' },
 };
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const image = IMAGE_MAP[project.id];
+  const imageData = IMAGE_MAP[project.id];
 
   return (
     <motion.div
@@ -37,18 +38,28 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
       {/* Image area */}
       <div className="relative w-full h-44 bg-surface-2 overflow-hidden flex items-center justify-center">
-        {image ? (
-          <>
-            <img
-              src={image}
-              alt={`${project.name}`}
-              className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface-2/80 via-transparent to-transparent" />
-          </>
+        {imageData ? (
+          imageData.type === 'screenshot' ? (
+            <>
+              <img
+                src={imageData.src}
+                alt={project.name}
+                className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-surface-2/80 via-transparent to-transparent" />
+            </>
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-accent/5 to-accent-warm/5 flex items-center justify-center p-10">
+              <img
+                src={imageData.src}
+                alt={project.name}
+                className="max-w-[80px] max-h-[80px] object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+              />
+            </div>
+          )
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-accent/5 to-accent-warm/5 flex items-center justify-center">
-            <span className="text-2xl font-bold text-accent/20 font-mono">
+            <span className="text-3xl font-bold text-accent/15 font-mono">
               {project.name.charAt(0)}
             </span>
           </div>
