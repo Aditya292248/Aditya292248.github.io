@@ -14,6 +14,13 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Database,
 };
 
+const SKILL_ICON_MAP: Record<string, string> = {
+  Python: '/images/python.png',
+  TypeScript: '/images/typescript.png',
+  JavaScript: '/images/js.png',
+  SQL: '/images/sql.png',
+};
+
 const pillVariant = {
   hidden: { opacity: 0, scale: 0.85 },
   visible: {
@@ -70,20 +77,30 @@ function SkillCard({ category }: { category: SkillCategory }) {
         viewport={{ once: true, amount: 0.3 }}
         className="flex flex-wrap gap-2"
       >
-        {category.skills.map((skill) => (
-          <motion.span
-            key={skill}
-            variants={pillVariant}
-            className="text-xs font-mono px-2.5 py-1 rounded-sm border transition-all duration-200"
-            style={{
-              backgroundColor: 'var(--surface-3)',
-              borderColor: `${accentHex}20`,
-              color: accentHex,
-            }}
-          >
-            {skill}
-          </motion.span>
-        ))}
+        {category.skills.map((skill) => {
+          const icon = SKILL_ICON_MAP[skill];
+          return (
+            <motion.span
+              key={skill}
+              variants={pillVariant}
+              className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-sm border transition-all duration-200"
+              style={{
+                backgroundColor: 'var(--surface-3)',
+                borderColor: `${accentHex}20`,
+                color: accentHex,
+              }}
+            >
+              {icon && (
+                <img
+                  src={icon}
+                  alt={skill}
+                  className="w-3.5 h-3.5 object-contain"
+                />
+              )}
+              {skill}
+            </motion.span>
+          );
+        })}
       </motion.div>
     </motion.div>
   );
