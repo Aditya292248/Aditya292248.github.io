@@ -1,25 +1,21 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
-import LenisProvider from '@/components/providers/LenisProvider';
+import { Lora, Plus_Jakarta_Sans, Caveat } from 'next/font/google';
+
+const sans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans' });
+const serif = Lora({ subsets: ['latin'], variable: '--font-serif' });
+const hand = Caveat({ subsets: ['latin'], variable: '--font-hand' });
 
 export const metadata: Metadata = {
-  title: 'Aditya Bisht — AI Engineer & Builder',
+  title: 'Aditya :)',
   description:
-    'Aditya Bisht — CS student at Northeastern University building AI systems, agents, and products at the intersection of research and real-world scale.',
+    'Aditya Bisht — CS student at Northeastern University building AI systems, agents, and products.',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className="bg-bg text-text-primary antialiased overflow-x-hidden">
-        <LenisProvider>{children}</LenisProvider>
-      </body>
+    <html lang="en" className={`${sans.variable} ${serif.variable} ${hand.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }

@@ -58,6 +58,51 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
   {
+    id: 'stepglass',
+    name: 'Stepglass',
+    shortDescription: 'Agent Run Verification',
+    longDescription:
+      'Open-source, self-hosted tool that records what an AI agent did, verifies what actually changed in the systems it touched with before/after evidence, and checks the result against your policies.',
+    tags: ['TypeScript', 'PostgreSQL'],
+    github: 'https://github.com/Aditya292248/stepGlass',
+  },
+  {
+    id: 'verified-caller',
+    name: 'Verified Caller',
+    shortDescription: 'Caller ID for AI Phone Agents',
+    longDescription:
+      'Looks up the platform record of a live AI agent call to show which agent placed it and who owns it, flags mismatches, and delivers a signed, independently verifiable verdict.',
+    tags: ['TypeScript', 'Node.js'],
+    github: 'https://github.com/Aditya292248/voiceAgentAuthentication',
+  },
+  {
+    id: 'codingagent',
+    name: 'codingAgent',
+    shortDescription: 'VS Code Assistant',
+    longDescription:
+      'A VS Code coding assistant backed by a local repository graph. Package boundaries, shared contracts and build tooling are in place; the agent loop is next.',
+    tags: ['TypeScript', 'VS Code'],
+    github: 'https://github.com/Aditya292248/codingAgent',
+  },
+  {
+    id: 'openbrowser',
+    name: 'openBrowser',
+    shortDescription: 'Browser CLI in Rust',
+    longDescription:
+      'A Rust CLI for one persistent Chrome tab: every command is a fresh process while a local daemon keeps the browser session alive.',
+    tags: ['Rust', 'Chrome'],
+    github: 'https://github.com/Aditya292248/openBrowser',
+  },
+  {
+    id: 'finreview',
+    name: 'finreview',
+    shortDescription: 'Financial Inclusion Platform',
+    longDescription:
+      'Full-stack platform with a React frontend and an Express backend using the OpenAI API.',
+    tags: ['React', 'Express', 'OpenAI'],
+    github: 'https://github.com/Aditya292248/finreview',
+  },
+  {
     id: 'gatepoint',
     name: 'GatePoint',
     shortDescription: 'AI Agent Security Gateway',
